@@ -3,19 +3,159 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0a0a0f" />
   <title>PS5 Controller Overlay</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  >
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <div id="overlay" class="skin-clean-white">
-    <div class="controller">
-      <div class="button" id="btn-cross"></div>
-      <div class="button" id="btn-circle"></div>
-      <div class="button" id="btn-square"></div>
-      <div class="button" id="btn-triangle"></div>
-      <div class="stick" id="stick-left"></div>
-      <div class="stick" id="stick-right"></div>
-    </div>
+  <div id="app" class="theme-initiald-ae86 panel-on compact-off disconnected">
+    <div class="backdrop noise"></div>
+    <div class="backdrop speedlines"></div>
+
+    <aside class="hud-panel" id="hudPanel" aria-label="Overlay telemetry">
+      <div class="hud-topline">
+        <span class="hud-tag">OBS OVERLAY</span>
+        <span class="hud-tag accent" id="connectionBadge">NO PAD</span>
+      </div>
+
+      <div class="hud-title-wrap">
+        <h1>PS5 Controller Overlay</h1>
+        <p>Initial D inspired DualSense overlay with live input telemetry.</p>
+      </div>
+
+      <div class="hud-grid">
+        <div class="hud-card">
+          <span class="hud-label">Skin</span>
+          <span class="hud-value" id="skinLabel">initiald-ae86</span>
+        </div>
+        <div class="hud-card">
+          <span class="hud-label">Scale</span>
+          <span class="hud-value" id="scaleLabel">100%</span>
+        </div>
+        <div class="hud-card">
+          <span class="hud-label">Glow</span>
+          <span class="hud-value" id="glowLabel">85%</span>
+        </div>
+        <div class="hud-card">
+          <span class="hud-label">Pad</span>
+          <span class="hud-value" id="padLabel">DualSense</span>
+        </div>
+      </div>
+
+      <div class="hud-meters">
+        <div class="meter-block">
+          <div class="meter-header">
+            <span>Throttle</span>
+            <span id="r2Text">0%</span>
+          </div>
+          <div class="meter-track">
+            <div id="r2Fill" class="meter-fill meter-fill-r2"></div>
+          </div>
+        </div>
+
+        <div class="meter-block">
+          <div class="meter-header">
+            <span>Brake</span>
+            <span id="l2Text">0%</span>
+          </div>
+          <div class="meter-track">
+            <div id="l2Fill" class="meter-fill meter-fill-l2"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hud-help">
+        <div><strong>URL params</strong></div>
+        <code>?skin=initiald-ae86&panel=off&scale=100&glow=85&deadzone=12</code>
+      </div>
+    </aside>
+
+    <main class="stage">
+      <section class="controller-shell" aria-label="PS5 controller overlay">
+        <div class="controller-glow"></div>
+        <div class="controller-rim"></div>
+        <div class="controller-core"></div>
+
+        <div class="left-wing"></div>
+        <div class="right-wing"></div>
+
+        <div class="center-panel"></div>
+        <div class="touchpad"></div>
+        <div class="touchpad-race-line"></div>
+        <div class="speaker-grille"></div>
+
+        <div class="trigger-cluster left">
+          <div class="shoulder-button" id="lb">L1</div>
+          <div class="trigger-track">
+            <div class="trigger-fill" id="ltFill"></div>
+          </div>
+          <div class="trigger-cap" id="ltCap">L2</div>
+        </div>
+
+        <div class="trigger-cluster right">
+          <div class="shoulder-button" id="rb">R1</div>
+          <div class="trigger-track">
+            <div class="trigger-fill" id="rtFill"></div>
+          </div>
+          <div class="trigger-cap" id="rtCap">R2</div>
+        </div>
+
+        <div class="dpad-cluster">
+          <button class="dpad up" id="dpadUp" aria-label="D-Pad Up"></button>
+          <button class="dpad right" id="dpadRight" aria-label="D-Pad Right"></button>
+          <button class="dpad down" id="dpadDown" aria-label="D-Pad Down"></button>
+          <button class="dpad left" id="dpadLeft" aria-label="D-Pad Left"></button>
+          <div class="dpad-center"></div>
+        </div>
+
+        <div class="stick-module left">
+          <div class="stick-ring"></div>
+          <div class="stick-travel"></div>
+          <button class="stick" id="leftStick" aria-label="Left stick"></button>
+          <div class="stick-pulse"></div>
+        </div>
+
+        <div class="stick-module right">
+          <div class="stick-ring"></div>
+          <div class="stick-travel"></div>
+          <button class="stick" id="rightStick" aria-label="Right stick"></button>
+          <div class="stick-pulse"></div>
+        </div>
+
+        <div class="button-cluster">
+          <button class="face triangle" id="triangle" aria-label="Triangle"><span>△</span></button>
+          <button class="face circle" id="circle" aria-label="Circle"><span>○</span></button>
+          <button class="face cross" id="cross" aria-label="Cross"><span>✕</span></button>
+          <button class="face square" id="square" aria-label="Square"><span>□</span></button>
+        </div>
+
+        <button class="system-button small share" id="shareBtn" aria-label="Share">≡</button>
+        <button class="system-button small options" id="optionsBtn" aria-label="Options">☰</button>
+        <button class="system-button medium ps" id="psBtn" aria-label="PS">PS</button>
+        <button class="system-button mic" id="micBtn" aria-label="Mute">●</button>
+
+        <div class="telemetry-strip">
+          <div class="telemetry-block">
+            <span class="telemetry-label">L-STICK</span>
+            <span class="telemetry-value" id="leftStickValue">0.00 / 0.00</span>
+          </div>
+          <div class="telemetry-block focus">
+            <span class="telemetry-label">INPUT STATE</span>
+            <span class="telemetry-value" id="statusText">Waiting for controller…</span>
+          </div>
+          <div class="telemetry-block">
+            <span class="telemetry-label">R-STICK</span>
+            <span class="telemetry-value" id="rightStickValue">0.00 / 0.00</span>
+          </div>
+        </div>
+      </section>
+    </main>
   </div>
 
   <script src="app.js"></script>
