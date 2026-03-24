@@ -1,0 +1,18 @@
+body { background: transparent; margin: 0; }
+
+.controller { position: relative; width: 400px; height: 200px; }
+.button { width: 20px; height: 20px; border-radius: 50%; position: absolute; opacity: 0.3; }
+.button.active { opacity: 1; }
+
+#btn-cross { bottom: 40px; right: 60px; }
+#btn-circle { bottom: 60px; right: 40px; }
+#btn-square { bottom: 60px; right: 80px; }
+#btn-triangle { bottom: 80px; right: 60px; }
+
+.stick { width: 40px; height: 40px; border-radius: 50%; background: #333; position: absolute; }
+#stick-left { bottom: 40px; left: 60px; }
+#stick-right { bottom: 40px; left: 120px; }
+
+.skin-initiald-ae86 { filter: contrast(1.2) brightness(1.1); }
+.skin-initiald-redsuns { filter: hue-rotate(20deg) brightness(1.2); }
+.skin-midnight-touge { filter: brightness(0.8) saturate(1.2); }
